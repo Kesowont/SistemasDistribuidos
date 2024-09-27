@@ -5,11 +5,12 @@ UNMSM - FISI - 2024-2
 * Sulca Mamani, Ivan Frank
 * Zamudio Balabarca, Americo Marcelo
 
-## Ejecutar local
-
+## Ejecutar local  
+Luego de clonar el reporsitorio, colocar en la terminal:  
 `./mvnw spring-boot:run`
 
-En el navegador colocar: localhost:8080
+En el navegador colocar:  
+`http://localhost:8080`
 
 ## Aplicación desplegada
 http://3.143.49.76:8080/
