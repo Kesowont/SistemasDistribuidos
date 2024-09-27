@@ -12,4 +12,4 @@ UNMSM - FISI - 2024-2
 En el navegador colocar: localhost:8080
 
 ## Aplicación desplegada
-[[http://3.143.49.76:8080/]]
+http://3.143.49.76:8080/
