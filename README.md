@@ -10,3 +10,6 @@ UNMSM - FISI - 2024-2
 `./mvnw spring-boot:run`
 
 En el navegador colocar: localhost:8080
+
+## Aplicación desplegada
+[[http://3.143.49.76:8080/]]
