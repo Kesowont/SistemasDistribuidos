@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Página de Integrantes</title>
+</head>
+<body>
+    <h1>Bienvenido al curso de: <span th:text="${curso}"></span></h1>
+    <img src="/img/Tesla.png" alt="Logo del curso" width="800">
+    <h2>Integrantes del grupo:</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Código</th>
+                <th>Correo</th>
+                <th>Celular</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="integrante : ${integrantes}">
+                <td th:text="${integrante[0]}"></td>
+                <td th:text="${integrante[1]}"></td>
+                <td th:text="${integrante[2]}"></td>
+                <td th:text="${integrante[3]}"></td>
+                <td th:text="${integrante[4]}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
