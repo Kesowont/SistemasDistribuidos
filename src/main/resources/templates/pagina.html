@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Página de Integrantes</title>
+    <title>Sistemas Distribuidos</title>
+    <link rel="icon" href="/img/logofisi.png" type="image/x-icon">
+    <!-- Corrección de la referencia al archivo CSS -->
+    <link rel="stylesheet" th:href="@{/img/styles.css}">
 </head>
 <body>
     <h1>Bienvenido al curso de: <span th:text="${curso}"></span></h1>
-    <img src="/img/Tesla.png" alt="Logo del curso" width="800">
+    <img src="/img/unmsm.png" alt="Logo del curso" width="800">
     <h2>Integrantes del grupo:</h2>
     <table border="1">
         <thead>
@@ -19,11 +22,11 @@
         </thead>
         <tbody>
             <tr th:each="integrante : ${integrantes}">
-                <td th:text="${integrante[0]}"></td>
-                <td th:text="${integrante[1]}"></td>
-                <td th:text="${integrante[2]}"></td>
-                <td th:text="${integrante[3]}"></td>
-                <td th:text="${integrante[4]}"></td>
+                <td th:text="${integrante.nombre}"></td>
+                <td th:text="${integrante.apellidos}"></td>
+                <td th:text="${integrante.codigo}"></td>
+                <td th:text="${integrante.correo}"></td>
+                <td th:text="${integrante.celular}"></td>
             </tr>
         </tbody>
     </table>
