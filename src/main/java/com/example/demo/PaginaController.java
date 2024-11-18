@@ -1,16 +1,21 @@
 package com.example.demo;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Controller
 public class PaginaController {
 
     @GetMapping("/")
+    public String redirectToPagina() {
+        return "redirect:/pagina"; // Redirigir a la página principal
+    }
+
+    @GetMapping("/pagina")
     public String mostrarPagina(Model model) {
         // Datos por defecto de los integrantes
         List<Integrante> integrantes = Arrays.asList(

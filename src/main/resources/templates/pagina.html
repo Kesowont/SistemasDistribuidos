@@ -6,6 +6,13 @@
     <link rel="stylesheet" th:href="@{/img/styles.css}">
 </head>
 <body>
+
+    <nav class="header">
+        <ul class="menu">
+            <li><a th:href="@{/pagina}" class="button">Tarea 1</a></li>
+            <li><a th:href="@{/climate}" class="button">Tarea 2</a></li>
+        </ul>
+    </nav>
     <h1>Bienvenido al curso de: <span th:text="${curso}"></span></h1>
     <img src="/img/unmsm.png" alt="Logo del curso" width="800">
     <h2>Integrantes del grupo:</h2>
