@@ -86,7 +86,4 @@ public class ClimateDataService {
                 })
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
-
-    
-    
 }

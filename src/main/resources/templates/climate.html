@@ -10,65 +10,22 @@
         document.addEventListener("DOMContentLoaded", () => {
             // Conectar al WebSocket
             const socket = new WebSocket(`ws://${window.location.host}/climate-updates`);
-
-            // Manejar la recepción de datos
-            socket.onmessage = function(event) {
-                const data = JSON.parse(event.data);
-                const tableBody = document.getElementById("climate-data-body");
-                tableBody.innerHTML = ""; // Limpiar contenido previo
-
-                // Crear filas para cada registro recibido
-                data.forEach(record => {
-                    // Determinar clases para temperatura
-                    let tempClass = "normal";
-                    if (record.temperature < 10) tempClass = "low";
-                    else if (record.temperature > 25) tempClass = "high";
-
-                    // Determinar clases para precipitación
-                    let precipClass = "normal";
-                    if (record.precipitation < 50) precipClass = "low";
-                    else if (record.precipitation > 100) precipClass = "high";
-
-                    // Crear la fila HTML con clases dinámicas
-                    const row = `
-                    <tr>
-                        <td>${record.year || "N/A"}</td>
-                        <td>${record.month || "N/A"}</td>
-                        <td class="temperature ${tempClass}">${record.temperature ? record.temperature.toFixed(2) : "N/A"} °C</td>
-                        <td class="precipitation ${precipClass}">${record.precipitation ? record.precipitation.toFixed(2) : "N/A"} mm</td>
-                    </tr>
-                `;
-
-
-                    tableBody.innerHTML += row;
-                });
-            };
-
-            // Manejar errores de conexión
-            socket.onerror = function(error) {
-                console.error("WebSocket error:", error);
-            };
-
-            // Manejar cierre de conexión
-            socket.onclose = function() {
-                console.log("WebSocket connection closed");
-            };
-        });
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const socket = new WebSocket(`ws://${window.location.host}/climate-updates`);
+    
+            // Inicializar el temporizador
             let timer = 60; // Tiempo inicial en segundos
     
-            // Actualizar el temporizador cada segundo
-            setInterval(() => {
+            // Función para actualizar el temporizador
+            const updateTimer = () => {
                 timer--;
                 if (timer < 0) timer = 60; // Reiniciar el temporizador después de 1 minuto
                 document.getElementById("timer").textContent = timer;
-            }, 1000);
+            };
     
-            // Manejar la recepción de datos
-            socket.onmessage = function(event) {
+            // Actualizar el temporizador cada segundo
+            setInterval(updateTimer, 1000);
+    
+            // Manejar la recepción de datos desde el servidor
+            socket.onmessage = function (event) {
                 const data = JSON.parse(event.data);
                 const tableBody = document.getElementById("climate-data-body");
                 tableBody.innerHTML = ""; // Limpiar contenido previo
@@ -88,30 +45,31 @@
                     // Crear la fila HTML con clases dinámicas
                     const row = `
                         <tr>
-                            <td>${record.year}</td>
-                            <td>${record.month}</td>
-                            <td class="temperature ${tempClass}">${record.temperature.toFixed(2)} °C</td>
-                            <td class="precipitation ${precipClass}">${record.precipitation.toFixed(2)} mm</td>
+                            <td>${record.year || "N/A"}</td>
+                            <td>${record.month || "N/A"}</td>
+                            <td class="temperature ${tempClass}">${record.temperature ? record.temperature.toFixed(2) : "N/A"} °C</td>
+                            <td class="precipitation ${precipClass}">${record.precipitation ? record.precipitation.toFixed(2) : "N/A"} mm</td>
                         </tr>
                     `;
                     tableBody.innerHTML += row;
                 });
     
-                // Reiniciar temporizador después de cada actualización
+                // Reiniciar temporizador al recibir nuevos datos
                 timer = 60;
             };
     
             // Manejar errores de conexión
-            socket.onerror = function(error) {
+            socket.onerror = function (error) {
                 console.error("WebSocket error:", error);
             };
     
             // Manejar cierre de conexión
-            socket.onclose = function() {
+            socket.onclose = function () {
                 console.log("WebSocket connection closed");
             };
         });
-    </script>    
+    </script>
+     
 </head>
 <body>
     <nav class="header">
